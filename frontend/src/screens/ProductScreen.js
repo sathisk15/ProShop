@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import {Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap'
 import Rating from '../components/Rating'
-import products from '../products'
+import products from '../../../backend/data/products'
 
 const ProductScreen = (props) => {
     const {id} = useParams()
@@ -24,7 +24,7 @@ const ProductScreen = (props) => {
                 Price: ${product.price}
             </ListGroup.Item>
             <ListGroup.Item>
-                Description: ${product.description}
+                Description: {product.description}
             </ListGroup.Item>
         </Col>
         <Col md={3}>
