@@ -8,6 +8,7 @@ const reviewSchema = mongoose.Schema(
   },
   { timestapms: true }
 );
+
 const productSchema = mongoose.Schema(
   {
     user: {
@@ -28,7 +29,7 @@ const productSchema = mongoose.Schema(
       required: true,
     },
     description: {
-      type: Boolean,
+      type: String,
       required: false,
     },
     reviews: [reviewSchema],
@@ -56,6 +57,6 @@ const productSchema = mongoose.Schema(
   { timestapms: true }
 );
 
-const Product = mongoose.model("User", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
 export default Product;
