@@ -1,8 +1,13 @@
 // const express = require('express')
 import express from 'express'
 import dotenv from 'dotenv'
-import products from './data/products.js'
 import connectDB from './config/db.js'
+
+// Error handler
+import { errorHandler, notFound } from './middleware/errorMiddleware.js'
+
+// Check Routes folder 
+import productRoutes from './routes/productRoutes.js'
 
 // It is for Environment Variable setup as process.env.<Variable name declared in the .env file>
 dotenv.config()
@@ -14,14 +19,10 @@ app.get('/',(req, res)=>{
     res.send('Api is running')
 })
 
-app.get('/api/products', (req,res)=>{
-    res.send(products)
-})
+app.use('/api/products', productRoutes)
 
-app.get('/api/products/:id', (req,res)=>{
-    const product = products.find(p=>p._id == req.params.id)
-    res.send(product)
-})
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
