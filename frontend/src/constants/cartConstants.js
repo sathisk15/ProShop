@@ -1,2 +1,2 @@
-export const EART_ADD_ITEM = 'EART_ADD_ITEM'
-export const EART_REMOVE_ITEM = 'EART_REMOVE_ITEM'
+export const CART_ADD_ITEM = 'CART_ADD_ITEM'
+export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM'
