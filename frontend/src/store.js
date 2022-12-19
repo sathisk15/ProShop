@@ -21,7 +21,6 @@ const initialState = {
     cart: { cartItems },
 };
 
-console.log(initialState)
 
 const middleware = [thunk];
 const store = createStore(
