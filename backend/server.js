@@ -9,17 +9,23 @@ import { errorHandler, notFound } from './middleware/errorMiddleware.js'
 // Check Routes folder 
 import productRoutes from './routes/productRoutes.js'
 
+// User Routes
+import userRoutes from './routes/userRoutes.js'
+
 // It is for Environment Variable setup as process.env.<Variable name declared in the .env file>
 dotenv.config()
 // Routing setup
 const app = express()
 // To Connect DB setup
+
+app.use(express.json())
 connectDB()
 app.get('/',(req, res)=>{
     res.send('Api is running')
 })
 
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
