@@ -16,9 +16,9 @@ const ProfileScreen = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const redirect = searchParams.get('redirect')
-    ? searchParams.get('redirect')
-    : '/';
+  //   const redirect = searchParams.get('redirect')
+  //     ? searchParams.get('redirect')
+  //     : '/';
 
   const dispatch = useDispatch();
 

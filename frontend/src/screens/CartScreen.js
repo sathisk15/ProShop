@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../components/Message';
 import {
   Link,
   useParams,
   useSearchParams,
   useNavigate,
-} from "react-router-dom";
+} from 'react-router-dom';
 import {
   Row,
   Col,
@@ -15,12 +15,12 @@ import {
   Form,
   Button,
   Card,
-} from "react-bootstrap";
-import { addToCart, removeFromCart} from "../actions/cartActions";
+} from 'react-bootstrap';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 const CartScreen = () => {
   const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const qty = searchParams.get("qty");
+  const qty = searchParams.get('qty');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,10 +29,18 @@ const CartScreen = () => {
     }
   }, [dispatch, id, qty]);
   const removeFromCartHandler = (id) => {
-    dispatch(removeFromCart(id))
+    dispatch(removeFromCart(id));
   };
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    if (!userInfo) {
+      navigate('/login');
+    } else {
+      navigate('/shipping');
+    }
   };
   const { cartItems } = useSelector((state) => state.cart);
   return (
