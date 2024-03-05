@@ -12,6 +12,8 @@ import {
 } from '../constants/orderConstants';
 import axios from 'axios';
 
+const apiBaseURL = process.env.REACT_APP_API_BASE_URL;
+
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_CREATE_REQUEST });
@@ -24,7 +26,11 @@ export const createOrder = (order) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/orders`, order, config);
+    const { data } = await axios.post(
+      `${apiBaseURL}/api/orders`,
+      order,
+      config
+    );
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
   } catch (error) {
@@ -50,7 +56,10 @@ export const getOrderDetails = (orderId) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/orders/${orderId}`, config);
+    const { data } = await axios.get(
+      `${apiBaseURL}/api/orders/${orderId}`,
+      config
+    );
 
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
@@ -79,7 +88,7 @@ export const payOrder =
         },
       };
       const { data } = await axios.put(
-        `/api/orders/${orderId}/pay`,
+        `${apiBaseURL}/api/orders/${orderId}/pay`,
         paymentResult,
         config
       );
