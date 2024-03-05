@@ -2,7 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
-
+import cors from 'cors';
 // Error handler
 import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
@@ -22,6 +22,13 @@ const app = express();
 // To Connect DB setup
 
 app.use(express.json());
+
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'https://proshop-gqaz.onrender.com/'],
+  })
+);
+
 connectDB();
 app.get('/', (req, res) => {
   res.send('Api is running');
