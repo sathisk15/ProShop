@@ -25,7 +25,12 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://proshop-gqaz.onrender.com/'],
+    origin: [
+      'http://localhost:3000',
+      'https://proshop-gqaz.onrender.com/',
+      'https://proshopping-app.web.app/',
+      'https://proshopping-app.firebaseapp.com/',
+    ],
   })
 );
 

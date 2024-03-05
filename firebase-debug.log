@@ -1,0 +1,125 @@
+[debug] [2024-03-05T15:40:27.565Z] ----------------------------------------------------------------------
+[debug] [2024-03-05T15:40:27.567Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-03-05T15:40:27.568Z] CLI Version:   11.20.0
+[debug] [2024-03-05T15:40:27.569Z] Platform:      win32
+[debug] [2024-03-05T15:40:27.569Z] Node Version:  v18.12.1
+[debug] [2024-03-05T15:40:27.570Z] Time:          Tue Mar 05 2024 21:10:27 GMT+0530 (India Standard Time)
+[debug] [2024-03-05T15:40:27.571Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-05T15:40:27.576Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-03-05T15:40:27.696Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-05T15:40:27.696Z] > authorizing via signed-in user (rsathisk15@gmail.com)
+[debug] [2024-03-05T15:40:27.697Z] [iam] checking project proshopping-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-03-05T15:40:27.698Z] > refreshing access token with scopes: []
+[debug] [2024-03-05T15:40:27.699Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-05T15:40:27.699Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:40:28.139Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-03-05T15:40:28.140Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:40:28.141Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions [none]
+[debug] [2024-03-05T15:40:28.142Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions x-goog-quota-user=projects/proshopping-app
+[debug] [2024-03-05T15:40:28.142Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-03-05T15:40:28.336Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-03-05T15:40:28.336Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-03-05T15:40:29.682Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions 401
+[debug] [2024-03-05T15:40:29.683Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"service":"cloudresourcemanager.googleapis.com","method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions"}}]}}
+[debug] [2024-03-05T15:40:29.685Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-03-05T15:40:29.685Z] > refreshing access token with scopes: []
+[debug] [2024-03-05T15:40:29.686Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-05T15:40:29.687Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:40:30.113Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-03-05T15:40:30.113Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:40:30.115Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app [none]
+[debug] [2024-03-05T15:40:30.601Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app 401
+[debug] [2024-03-05T15:40:30.601Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-03-05T15:40:30.602Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-03-05T15:40:30.898Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project proshopping-app. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-03-05T15:42:26.017Z] ----------------------------------------------------------------------
+[debug] [2024-03-05T15:42:26.020Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2024-03-05T15:42:26.020Z] CLI Version:   11.20.0
+[debug] [2024-03-05T15:42:26.020Z] Platform:      win32
+[debug] [2024-03-05T15:42:26.020Z] Node Version:  v18.12.1
+[debug] [2024-03-05T15:42:26.022Z] Time:          Tue Mar 05 2024 21:12:26 GMT+0530 (India Standard Time)
+[debug] [2024-03-05T15:42:26.022Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-05T15:42:26.098Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-05T15:42:26.098Z] > authorizing via signed-in user (rsathisk15@gmail.com)
+[debug] [2024-03-05T15:42:26.098Z] [iam] checking project proshopping-app for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-03-05T15:42:26.100Z] > refreshing access token with scopes: []
+[debug] [2024-03-05T15:42:26.103Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-05T15:42:26.103Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:42:26.419Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-03-05T15:42:26.419Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:42:26.420Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions [none]
+[debug] [2024-03-05T15:42:26.420Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions x-goog-quota-user=projects/proshopping-app
+[debug] [2024-03-05T15:42:26.421Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-03-05T15:42:27.857Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions 401
+[debug] [2024-03-05T15:42:27.858Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/proshopping-app:testIamPermissions {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"ACCESS_TOKEN_TYPE_UNSUPPORTED","metadata":{"method":"google.cloudresourcemanager.v1.Projects.TestIamPermissions","service":"cloudresourcemanager.googleapis.com"}}]}}
+[debug] [2024-03-05T15:42:27.860Z] [iam] error while checking permissions, command may fail: FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-03-05T15:42:27.861Z] > refreshing access token with scopes: []
+[debug] [2024-03-05T15:42:27.862Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-05T15:42:27.862Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:42:28.149Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-03-05T15:42:28.149Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:42:28.151Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app [none]
+[debug] [2024-03-05T15:42:28.470Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app 401
+[debug] [2024-03-05T15:42:28.470Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-03-05T15:42:28.470Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-03-05T15:42:28.780Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project proshopping-app. Please make sure the project exists and your account has permission to access it.
+[debug] [2024-03-05T15:42:47.821Z] ----------------------------------------------------------------------
+[debug] [2024-03-05T15:42:47.824Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-03-05T15:42:47.824Z] CLI Version:   11.20.0
+[debug] [2024-03-05T15:42:47.824Z] Platform:      win32
+[debug] [2024-03-05T15:42:47.825Z] Node Version:  v18.12.1
+[debug] [2024-03-05T15:42:47.826Z] Time:          Tue Mar 05 2024 21:12:47 GMT+0530 (India Standard Time)
+[debug] [2024-03-05T15:42:47.826Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-03-05T15:42:47.919Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-03-05T15:42:47.920Z] > authorizing via signed-in user (rsathisk15@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\Learnings\Web Developments\React\ProShop
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-03-05T15:42:57.605Z] Using project from CLI flag: proshopping-app
+[debug] [2024-03-05T15:42:57.608Z] > refreshing access token with scopes: []
+[debug] [2024-03-05T15:42:57.613Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-03-05T15:42:57.614Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:42:57.970Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 400
+[debug] [2024-03-05T15:42:57.971Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-03-05T15:42:57.971Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app [none]
+[debug] [2024-03-05T15:42:58.249Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app 401
+[debug] [2024-03-05T15:42:58.250Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/proshopping-app {"error":{"code":401,"message":"Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.","status":"UNAUTHENTICATED"}}
+[debug] [2024-03-05T15:42:58.251Z] HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+[debug] [2024-03-05T15:42:58.594Z] FirebaseError: HTTP Error: 401, Request had invalid authentication credentials. Expected OAuth 2 access token, login cookie or other valid authentication credential. See https://developers.google.com/identity/sign-in/web/devconsole-project.
+    at responseToError (C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\sathi\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:288:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to get Firebase project proshopping-app. Please make sure the project exists and your account has permission to access it.
