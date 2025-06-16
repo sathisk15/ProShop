@@ -15,8 +15,9 @@ import {
   USER_UPDATE_PROFILE_FAIL,
   USER_UPDATE_PROFILE_RESET,
 } from '../constants/userConstants';
+import { getBaseURL } from '../utils/utils';
 
-const apiBaseURL = process.env.REACT_APP_API_BASE_URL;
+const apiBaseURL = getBaseURL();
 
 export const login = (email, password) => async (dispatch) => {
   try {

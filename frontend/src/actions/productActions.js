@@ -6,9 +6,12 @@ import {
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
 } from '../constants/productConstants';
+import { getBaseURL } from '../utils/utils';
 
 import axios from 'axios';
-const apiBaseURL = process.env.REACT_APP_API_BASE_URL;
+
+const apiBaseURL = getBaseURL();
+
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });

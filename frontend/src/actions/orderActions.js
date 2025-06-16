@@ -11,8 +11,9 @@ import {
   // ORDER_PAY_RESET,
 } from '../constants/orderConstants';
 import axios from 'axios';
+import { getBaseURL } from '../utils/utils';
 
-const apiBaseURL = process.env.REACT_APP_API_BASE_URL;
+const apiBaseURL = getBaseURL();
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
