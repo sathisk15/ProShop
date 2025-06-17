@@ -6,6 +6,7 @@ import CheckoutSteps from './CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { emptyCart, removeFromCart } from '../actions/cartActions';
 
 const PlaceOrderScreen = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const PlaceOrderScreen = () => {
 
   useEffect(() => {
     if (success) {
+      dispatch(emptyCart());
       navigate(`/orders/${order._id}`);
     }
     // eslint-disable-next-line
