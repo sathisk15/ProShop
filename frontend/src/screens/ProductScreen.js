@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import {
   Row,
   Col,
@@ -7,13 +7,13 @@ import {
   Card,
   Button,
   Form,
-} from "react-bootstrap";
-import Rating from "../components/Rating";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { productDetails } from "../actions/productActions";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
+} from 'react-bootstrap';
+import Rating from '../components/Rating';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { productDetails } from '../actions/productActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductScreen = () => {
   const [qty, setQty] = useState(1);
@@ -73,13 +73,13 @@ const ProductScreen = () => {
                 <Row className="py-2 px-2">
                   <Col>Status:</Col>
                   <Col>
-                    {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                    {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
                   </Col>
                 </Row>
               </ListGroup.Item>
               {product.countInStock > 0 && (
                 <ListGroup.Item>
-                  <Row>
+                  <Row className="py-2 px-2">
                     <Col>Qty</Col>
                     <Col>
                       <Form.Control
