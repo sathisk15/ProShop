@@ -6,7 +6,12 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 // import { LinkContainer } from 'react-router-bootstrap';
-import { listMyOrders, listAllOrders, payOrder } from '../actions/orderActions';
+import {
+  listMyOrders,
+  listAllOrders,
+  payOrder,
+  deliverOrder,
+} from '../actions/orderActions';
 import OrdersTable from '../components/OrdersTable';
 import { use } from 'react';
 
@@ -56,6 +61,13 @@ const ProfileScreen = () => {
     success: orderPayStatus,
   } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const {
+    loading: loadingOrderDeliver,
+    error: orderDeliverError,
+    success: orderDeliverStatus,
+  } = orderDeliver;
+
   const dispatchOrdersList = () =>
     dispatch(userInfo.isAdmin ? listAllOrders() : listMyOrders());
 
@@ -75,8 +87,8 @@ const ProfileScreen = () => {
   }, [navigate, dispatch, userInfo, user]);
 
   useEffect(() => {
-    orderPayStatus && dispatchOrdersList();
-  }, [orderPay]);
+    (orderPayStatus || orderDeliverStatus) && dispatchOrdersList();
+  }, [orderPay, orderDeliver]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -99,7 +111,7 @@ const ProfileScreen = () => {
   };
 
   const markAsDelivered = (orderId) => {
-    console.log(`Marking order ${orderId} as delivered`);
+    dispatch(deliverOrder(orderId));
   };
 
   return (
