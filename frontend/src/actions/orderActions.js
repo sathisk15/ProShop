@@ -11,7 +11,7 @@ import {
   ORDER_LIST_MY_REQUEST,
   ORDER_LIST_MY_SUCCESS,
   ORDER_LIST_MY_FAIL,
-  ORDER_LIST_MY_RESET,
+  // ORDER_LIST_MY_RESET,
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_FAIL,
@@ -44,11 +44,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
-      payload:
-        // error.response && error.response.data.message
-        //   ? error.response.data.messsage
-        //   :
-        error.message,
+      payload: error?.response?.data?.message || error.message,
     });
   }
 };
@@ -73,11 +69,7 @@ export const getOrderDetails = (orderId) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ORDER_DETAILS_FAIL,
-      payload:
-        // error.response && error.response.data.message
-        //   ? error.response.data.messsage
-        //   :
-        error.message,
+      payload: error?.response?.data?.message || error.message,
     });
   }
 };
@@ -105,11 +97,7 @@ export const payOrder =
     } catch (error) {
       dispatch({
         type: ORDER_PAY_FAIL,
-        payload:
-          // error.response && error.response.data.message
-          //   ? error.response.data.messsage
-          //   :
-          error.message,
+        payload: error?.response?.data?.message || error.message,
       });
     }
   };

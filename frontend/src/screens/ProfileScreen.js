@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Form, Button, Row, Col, Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
-import { LinkContainer } from 'react-router-bootstrap';
-import { listMyOrders, listAllOrders } from '../actions/orderActions';
+// import { LinkContainer } from 'react-router-bootstrap';
+import { listMyOrders, listAllOrders, payOrder } from '../actions/orderActions';
 import OrdersTable from '../components/OrdersTable';
+import { use } from 'react';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -17,7 +18,7 @@ const ProfileScreen = () => {
 
   const [message, setMessage] = useState(null);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
   //   const redirect = searchParams.get('redirect')
   //     ? searchParams.get('redirect')
@@ -48,6 +49,16 @@ const ProfileScreen = () => {
     orders: allOrders,
   } = allOrdersList;
 
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingOrderPayment,
+    error: orderPayError,
+    success: orderPayStatus,
+  } = orderPay;
+
+  const dispatchOrdersList = () =>
+    dispatch(userInfo.isAdmin ? listAllOrders() : listMyOrders());
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!userInfo) {
@@ -55,13 +66,17 @@ const ProfileScreen = () => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails('profile'));
-        dispatch(userInfo.isAdmin ? listAllOrders() : listMyOrders());
+        dispatchOrdersList();
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
   }, [navigate, dispatch, userInfo, user]);
+
+  useEffect(() => {
+    orderPayStatus && dispatchOrdersList();
+  }, [orderPay]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -71,6 +86,22 @@ const ProfileScreen = () => {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
+
+  const markAsPaid = (orderId) => {
+    const date = Date.now().toString();
+    const paymentResult = {
+      id: date,
+      status: 'success',
+      update_time: date,
+      email_address: userInfo.email,
+    };
+    dispatch(payOrder(orderId, paymentResult));
+  };
+
+  const markAsDelivered = (orderId) => {
+    console.log(`Marking order ${orderId} as delivered`);
+  };
+
   return (
     <Row>
       <Col md={3}>
@@ -123,14 +154,18 @@ const ProfileScreen = () => {
       </Col>
       <Col md={9}>
         {userInfo.isAdmin ? <h2>All Orders</h2> : <h2>My Orders</h2>}
-        {loadingMyOrders || loadingAllOrders ? (
+        {loadingMyOrders || loadingAllOrders || loadingOrderPayment ? (
           <Loader />
-        ) : errorMyOrders || errorAllOrders ? (
-          <Message variant="danger">{errorMyOrders}</Message>
+        ) : errorMyOrders || errorAllOrders || orderPayError ? (
+          <Message variant="danger">
+            {errorMyOrders || errorAllOrders || orderPayError}
+          </Message>
         ) : (
           <OrdersTable
             orders={userInfo.isAdmin ? allOrders : myOrders}
             isAdmin={userInfo.isAdmin}
+            markAsPaid={markAsPaid}
+            markAsDelivered={markAsDelivered}
           />
         )}
       </Col>
