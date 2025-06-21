@@ -69,7 +69,7 @@ const ProfileScreen = () => {
   } = orderDeliver;
 
   const dispatchOrdersList = () =>
-    dispatch(userInfo.isAdmin ? listAllOrders() : listMyOrders());
+    dispatch(userInfo?.isAdmin ? listAllOrders() : listMyOrders());
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -165,7 +165,7 @@ const ProfileScreen = () => {
         </Form>
       </Col>
       <Col md={9}>
-        {userInfo.isAdmin ? <h2>All Orders</h2> : <h2>My Orders</h2>}
+        {userInfo?.isAdmin ? <h2>All Orders</h2> : <h2>My Orders</h2>}
         {loadingMyOrders || loadingAllOrders || loadingOrderPayment ? (
           <Loader />
         ) : errorMyOrders || errorAllOrders || orderPayError ? (
@@ -174,8 +174,8 @@ const ProfileScreen = () => {
           </Message>
         ) : (
           <OrdersTable
-            orders={userInfo.isAdmin ? allOrders : myOrders}
-            isAdmin={userInfo.isAdmin}
+            orders={userInfo?.isAdmin ? allOrders : myOrders}
+            isAdmin={userInfo?.isAdmin}
             markAsPaid={markAsPaid}
             markAsDelivered={markAsDelivered}
           />

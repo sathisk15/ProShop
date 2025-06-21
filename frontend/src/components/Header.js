@@ -30,17 +30,19 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="nav-bar">
             <Nav className="ml-auto">
-              <LinkContainer to="/cart">
-                <Nav.Link className="position-relative me-4">
-                  Cart{' '}
-                  {numberOfItemsInTheCart > 0 && (
-                    <span class="badge position-absolute top-0 start-100 translate-middle bg-black border border-light rounded-circle">
-                      {numberOfItemsInTheCart}
-                    </span>
-                  )}
-                  <i className="fas fa-shopping-cart"></i>
-                </Nav.Link>
-              </LinkContainer>
+              {!userInfo?.isAdmin && (
+                <LinkContainer to="/cart">
+                  <Nav.Link className="position-relative me-4">
+                    Cart{' '}
+                    {numberOfItemsInTheCart > 0 && (
+                      <span class="badge position-absolute top-0 start-100 translate-middle bg-black border border-light rounded-circle">
+                        {numberOfItemsInTheCart}
+                      </span>
+                    )}
+                    <i className="fas fa-shopping-cart"></i>
+                  </Nav.Link>
+                </LinkContainer>
+              )}
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
                   <LinkContainer to="/profile">
