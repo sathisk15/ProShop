@@ -6,7 +6,8 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { LinkContainer } from 'react-router-bootstrap';
-import { listMyOrders } from '../actions/orderActions';
+import { listMyOrders, listAllOrders } from '../actions/orderActions';
+import OrdersTable from '../components/OrdersTable';
 
 const ProfileScreen = () => {
   const [name, setName] = useState('');
@@ -34,7 +35,18 @@ const ProfileScreen = () => {
   const { success } = userUpdateProfile;
 
   const myOrdersList = useSelector((state) => state.myOrdersList);
-  const { loading: loadingOrders, error: errorOrders, orders } = myOrdersList;
+  const {
+    loading: loadingMyOrders,
+    error: errorMyOrders,
+    orders: myOrders,
+  } = myOrdersList;
+
+  const allOrdersList = useSelector((state) => state.allOrdersList);
+  const {
+    loading: loadingAllOrders,
+    error: errorAllOrders,
+    orders: allOrders,
+  } = allOrdersList;
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -43,7 +55,7 @@ const ProfileScreen = () => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails('profile'));
-        dispatch(listMyOrders());
+        dispatch(userInfo.isAdmin ? listAllOrders() : listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -110,54 +122,16 @@ const ProfileScreen = () => {
         </Form>
       </Col>
       <Col md={9}>
-        <h2>My Orders</h2>
-        {loadingOrders ? (
+        {userInfo.isAdmin ? <h2>All Orders</h2> : <h2>My Orders</h2>}
+        {loadingMyOrders || loadingAllOrders ? (
           <Loader />
-        ) : errorOrders ? (
-          <Message variant="danger">{errorOrders}</Message>
+        ) : errorMyOrders || errorAllOrders ? (
+          <Message variant="danger">{errorMyOrders}</Message>
         ) : (
-          <Table striped bordered hover responsive className="table-sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order._id}>
-                  <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
-                  <td>{order.totalPrice}</td>
-                  <td>
-                    {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
-                    ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }}></i>
-                    )}
-                  </td>
-                  <td>
-                    {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
-                    ) : (
-                      <i className="fas fa-times" style={{ color: 'red' }}></i>
-                    )}
-                  </td>
-                  <td>
-                    <LinkContainer to={`/orders/${order._id}`}>
-                      <Button className="btn-sm" variant="light">
-                        Details
-                      </Button>
-                    </LinkContainer>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <OrdersTable
+            orders={userInfo.isAdmin ? allOrders : myOrders}
+            isAdmin={userInfo.isAdmin}
+          />
         )}
       </Col>
     </Row>
